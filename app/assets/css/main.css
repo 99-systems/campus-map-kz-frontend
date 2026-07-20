@@ -1,1 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-sans: "Source Sans 3", sans-serif;
+
+  --color-ink: #0b1c24;
+  --color-ink-soft: #243b48;
+  --color-mist: #dce8e4;
+  --color-fog: #f2f6f4;
+  --color-sky: #6fa8b8;
+  --color-teal: #0f6e6a;
+  --color-gold: #d4a24c;
+  --color-sand: #e6d5b8;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-fog font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-teal) 35%, white);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
