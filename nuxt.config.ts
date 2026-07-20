@@ -17,5 +17,13 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    build: {
+      rolldownOptions: {
+        // Docker/CI builds often trip this diagnostic without a real failure.
+        checks: {
+          pluginTimings: false,
+        },
+      },
+    },
   },
 })
