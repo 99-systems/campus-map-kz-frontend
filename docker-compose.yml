@@ -1,12 +1,16 @@
 services:
   web:
+    container_name: campus-map-frontend
+
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        # Public runtime config only — never pass secrets here.
-        NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-}
+        NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE}
+
     image: campus-map-kz-frontend:latest
-    ports:
-      - "${PORT:-80}:80"
+
     restart: unless-stopped
+
+    ports:
+      - "3005:80"
